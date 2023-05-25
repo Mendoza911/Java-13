@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 public class TodosTest {
 
-    SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+    SimpleTask simpleTask = new SimpleTask(5, "Приложение НетоБанка");
 
     String[] subtasks = { "Молоко", "Яйца", "Хлеб" };
     Epic epic = new Epic(55, subtasks);
@@ -30,20 +30,7 @@ public class TodosTest {
     }
 
     @Test
-    public void shouldFindSimpleTask() {
-        Todos todos = new Todos();
-
-        todos.add(simpleTask);
-        todos.add(epic);
-        todos.add(meeting);
-
-        Task[] expected = {simpleTask};
-        Task[] actual = todos.search("Позвонить родителям");
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindEpic () {
+    public void shouldFindOneTask() {
         Todos todos = new Todos();
 
         todos.add(simpleTask);
@@ -51,27 +38,26 @@ public class TodosTest {
         todos.add(meeting);
 
         Task[] expected = {epic};
-        Task[] actual = todos.search("Хлеб");
+        Task[] actual = todos.search("Молоко");
         Assertions.assertArrayEquals(expected, actual);
-
     }
 
     @Test
-    public void shouldFindMeeting () {
+    public void shouldFindSomeTask() {
         Todos todos = new Todos();
 
         todos.add(simpleTask);
         todos.add(epic);
         todos.add(meeting);
 
-        Task[] expected = {meeting};
-        Task[] actual = todos.search("Выкатка 3й версии приложения");
+        Task[] expected = {simpleTask, meeting};
+        Task[] actual = todos.search("Приложение");
         Assertions.assertArrayEquals(expected, actual);
 
     }
 
     @Test
-    public void shouldtFindMeeting2 () {
+    public void shouldtFindTask () {
         Todos todos = new Todos();
 
         todos.add(simpleTask);
@@ -79,7 +65,7 @@ public class TodosTest {
         todos.add(meeting);
 
         Task[] expected = {};
-        Task[] actual = todos.search("Во вторник после обеда");
+        Task[] actual = todos.search("Новая задача");
         Assertions.assertArrayEquals(expected, actual);
 
     }
